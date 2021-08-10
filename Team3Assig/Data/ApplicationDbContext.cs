@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HelloWorldWeb.Data
+namespace Team3Assig.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
