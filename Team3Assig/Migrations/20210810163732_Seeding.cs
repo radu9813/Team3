@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Team3Assig.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Seeding : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -187,6 +187,21 @@ namespace Team3Assig.Migrations
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Student",
+                columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
+                values: new object[] { 1, "30/01/2000", "example@email.com", "Name1" });
+
+            migrationBuilder.InsertData(
+                table: "Student",
+                columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
+                values: new object[] { 2, "28/02/1900", "example2@email.com", "Name2" });
+
+            migrationBuilder.InsertData(
+                table: "Student",
+                columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
+                values: new object[] { 3, "05/07/1990", "example3@email.com", "Name3" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
