@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Team3Assig.Migrations
 {
-    public partial class Seeding : Migration
+    public partial class updatedDataTime : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,7 +53,7 @@ namespace Team3Assig.Migrations
                     StudentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Birthdate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -191,17 +191,32 @@ namespace Team3Assig.Migrations
             migrationBuilder.InsertData(
                 table: "Student",
                 columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
-                values: new object[] { 1, "30/01/2000", "example@email.com", "Name1" });
+                values: new object[] { 1, new DateTime(2001, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "example@email.com", "Name1" });
 
             migrationBuilder.InsertData(
                 table: "Student",
                 columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
-                values: new object[] { 2, "28/02/1900", "example2@email.com", "Name2" });
+                values: new object[] { 2, new DateTime(1980, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "example2@email.com", "Name2" });
 
             migrationBuilder.InsertData(
                 table: "Student",
                 columns: new[] { "StudentId", "Birthdate", "EmailAddress", "Name" },
-                values: new object[] { 3, "05/07/1990", "example3@email.com", "Name3" });
+                values: new object[] { 3, new DateTime(1988, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "example3@email.com", "Name3" });
+
+            migrationBuilder.InsertData(
+                table: "Diploma",
+                columns: new[] { "DiplomaId", "Abstract", "Completeness", "Supervisor", "Thesis" },
+                values: new object[] { 1, "Big description of the Thesis", true, "Borys", "Computer Science" });
+
+            migrationBuilder.InsertData(
+                table: "Diploma",
+                columns: new[] { "DiplomaId", "Abstract", "Completeness", "Supervisor", "Thesis" },
+                values: new object[] { 2, "Big description of the Thesis", true, "Borys", "Computer Engineering" });
+
+            migrationBuilder.InsertData(
+                table: "Diploma",
+                columns: new[] { "DiplomaId", "Abstract", "Completeness", "Supervisor", "Thesis" },
+                values: new object[] { 3, "Big description of the Thesis", true, "Borys", "Computer Architecture" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

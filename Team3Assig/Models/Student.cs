@@ -11,10 +11,15 @@ namespace Team3Assig.Models
         public int StudentId { get; set; }
         public string Name { get; set; }
 
-        public string Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         public string EmailAddress { get; set; }
 
         public virtual Diploma Diploma { get; set; }
+
+        //public Student()
+        //{
+        //    Birthdate = DateTime.Now;
+        //}
     }
 }

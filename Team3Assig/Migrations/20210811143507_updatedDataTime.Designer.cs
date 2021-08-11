@@ -10,8 +10,8 @@ using Team3Assig.Data;
 namespace Team3Assig.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210810163732_Seeding")]
-    partial class Seeding
+    [Migration("20210811143507_updatedDataTime")]
+    partial class updatedDataTime
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -241,6 +241,32 @@ namespace Team3Assig.Migrations
                     b.HasKey("DiplomaId");
 
                     b.ToTable("Diploma");
+
+                    b.HasData(
+                        new
+                        {
+                            DiplomaId = 1,
+                            Abstract = "Big description of the Thesis",
+                            Completeness = true,
+                            Supervisor = "Borys",
+                            Thesis = "Computer Science"
+                        },
+                        new
+                        {
+                            DiplomaId = 2,
+                            Abstract = "Big description of the Thesis",
+                            Completeness = true,
+                            Supervisor = "Borys",
+                            Thesis = "Computer Engineering"
+                        },
+                        new
+                        {
+                            DiplomaId = 3,
+                            Abstract = "Big description of the Thesis",
+                            Completeness = true,
+                            Supervisor = "Borys",
+                            Thesis = "Computer Architecture"
+                        });
                 });
 
             modelBuilder.Entity("Team3Assig.Models.Student", b =>
@@ -250,8 +276,8 @@ namespace Team3Assig.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Birthdate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
@@ -267,21 +293,21 @@ namespace Team3Assig.Migrations
                         new
                         {
                             StudentId = 1,
-                            Birthdate = "30/01/2000",
+                            Birthdate = new DateTime(2001, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example@email.com",
                             Name = "Name1"
                         },
                         new
                         {
                             StudentId = 2,
-                            Birthdate = "28/02/1900",
+                            Birthdate = new DateTime(1980, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example2@email.com",
                             Name = "Name2"
                         },
                         new
                         {
                             StudentId = 3,
-                            Birthdate = "05/07/1990",
+                            Birthdate = new DateTime(1988, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example3@email.com",
                             Name = "Name3"
                         });

@@ -274,8 +274,8 @@ namespace Team3Assig.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Birthdate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
@@ -291,21 +291,21 @@ namespace Team3Assig.Migrations
                         new
                         {
                             StudentId = 1,
-                            Birthdate = "30/01/2000",
+                            Birthdate = new DateTime(2001, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example@email.com",
                             Name = "Name1"
                         },
                         new
                         {
                             StudentId = 2,
-                            Birthdate = "28/02/1900",
+                            Birthdate = new DateTime(1980, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example2@email.com",
                             Name = "Name2"
                         },
                         new
                         {
                             StudentId = 3,
-                            Birthdate = "05/07/1990",
+                            Birthdate = new DateTime(1988, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "example3@email.com",
                             Name = "Name3"
                         });
