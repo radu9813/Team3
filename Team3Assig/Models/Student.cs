@@ -17,9 +17,11 @@ namespace Team3Assig.Models
 
         public virtual Diploma Diploma { get; set; }
 
-        //public Student()
-        //{
-        //    Birthdate = DateTime.Now;
-        //}
+        public int GetAge()
+        {
+            int age = DateTime.Now.Subtract(Birthdate).Days;
+
+            return age / 365;
+        }
     }
 }
