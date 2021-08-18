@@ -14,8 +14,14 @@ namespace Team3Assig.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public DiplomataController(ApplicationDbContext context)
+        private readonly string apiKey;
+
+
+        /// https://core.ac.uk:443/api-v2/articles/search/{search}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apikey}
+        
+        public DiplomataController(ApplicationDbContext context, IDiplomataControllerSettings diplomataControllerSettings)
         {
+            apiKey = diplomataControllerSettings.ApiKey;
             _context = context;
         }
 
