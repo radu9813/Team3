@@ -50,7 +50,10 @@ namespace Team3Assig.Controllers
             {
                 return NotFound();
             }
-            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{diploma.Thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
+
+            string thesis = diploma.Thesis.Replace(" ", "");
+
+            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
