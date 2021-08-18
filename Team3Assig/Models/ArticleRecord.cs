@@ -11,19 +11,19 @@ namespace Team3Assig.Controllers
         {
         }
 
-        public ArticleRecord(int id, string authors, string title, string topics, string downloadUrl)
+        public ArticleRecord(int id, List<string> authors, string title, List<string> topics, string downloadUrl)
         {
-            this.Id = id;
-            this.Authors = authors;
-            this.Title = title;
-            this.Topics = topics;
-            this.DownloadUrl = downloadUrl;
+            Id = id;
+            Authors = authors;
+            Title = title;
+            Topics = topics;
+            DownloadUrl = downloadUrl;
         }
 
         public int Id { get; set; }
-        public string Authors { get; set; }
+        public List<string> Authors { get; set; }
         public string Title { get; set; }
-        public string Topics { get; set; }
+        public List<string> Topics { get; set; }
         public string DownloadUrl { get; set; }
     }
 
