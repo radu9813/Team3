@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 using Team3Assig.Data;
 using Team3Assig.Models;
 
@@ -35,6 +37,7 @@ namespace Team3Assig.Controllers
         // GET: Diplomata/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+                    
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +50,14 @@ namespace Team3Assig.Controllers
             {
                 return NotFound();
             }
+
+            string thesis = diploma.Thesis.Replace(" ", "");
+
+            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            ParseDataApi(response.Content);
 
             return View(diploma);
         }
@@ -161,6 +172,36 @@ namespace Team3Assig.Controllers
         private bool DiplomaExists(int id)
         {
             return _context.Diploma.Any(e => e.DiplomaId == id);
+        }
+
+        private List<ArticleRecord> ParseDataApi(string content)
+        {
+            var json = JObject.Parse(content);
+
+            var result = new List<ArticleRecord>();
+
+            var data = json["data"].Take(5);
+            foreach (var item in data)
+            {
+                int id = item.Value<int>("id");
+                List<string> authors = new List<string>();
+                foreach(var author in item["authors"])
+                {
+                    authors.Add(author.ToString());
+                }
+
+                string title = item.Value<string>("title");
+                List<string> topics = new List<string>();
+                foreach (var topic in item["topics"])
+                {
+                    topics.Add(topic.ToString());
+                }
+                string downloadURL = item.Value<string>("downloadUrl");
+
+                result.Add(new ArticleRecord(id, authors, title, topics, downloadURL));
+            }
+
+            return result;
         }
     }
 }

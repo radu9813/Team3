@@ -28,8 +28,13 @@ namespace Team3Assig
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+<<<<<<< HEAD
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
+=======
+                    options.UseNpgsql(
+                        Configuration.GetConnectionString("DefaultConnection")));
+>>>>>>> 605adfc25fd790cd6bf76e149d600c8d013a7e84
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton<IDiplomataControllerSettings, DiplomataControllerSettings>();

@@ -1,8 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+<<<<<<< HEAD
     <UserSecretsId>836036ac-ae43-4938-b2d4-1608668f88b3</UserSecretsId>
+=======
+    <UserSecretsId>1b74401f-d217-42da-a348-81e54786c374</UserSecretsId>
+>>>>>>> 605adfc25fd790cd6bf76e149d600c8d013a7e84
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
@@ -17,7 +21,15 @@
 	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
 	  <PackageReference Include="Npgsql" Version="5.0.7" />
 	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+<<<<<<< HEAD
 
+=======
+	  <PackageReference Include="RestSharp" Version="106.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+>>>>>>> 605adfc25fd790cd6bf76e149d600c8d013a7e84
   </ItemGroup>
 
 </Project>
