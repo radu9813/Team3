@@ -2,11 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-<<<<<<< HEAD
 EXPOSE 80
 EXPOSE 443
-=======
->>>>>>> 605adfc25fd790cd6bf76e149d600c8d013a7e84
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
