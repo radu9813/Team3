@@ -52,14 +52,6 @@ namespace Team3Assig.Controllers
                 return NotFound();
             }
 
-            string thesis = diploma.Thesis.Replace(" ", "");
-
-            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-            ParseDataApi(response.Content);
-
             return View(diploma);
         }
         public async Task<IActionResult> Reference(int? id)
@@ -92,6 +84,9 @@ namespace Team3Assig.Controllers
         public IActionResult Create()
         {
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId");
+
+
+            ViewData["Topics"] = new SelectList(new List<int>{ 1, 2, 3, 4, 5 });
             return View();
         }
 
@@ -100,10 +95,11 @@ namespace Team3Assig.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DiplomaId,Thesis,Abstract,Completeness,Supervisor")] Diploma diploma)
+        public async Task<IActionResult> Create([Bind("DiplomaId,Thesis,Completeness,Supervisor")] Diploma diploma)
         {
             if (ModelState.IsValid)
             {
+                diploma.Abstract = "Abstract not set yet, please visit edit page.";
                 _context.Add(diploma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -125,10 +121,28 @@ namespace Team3Assig.Controllers
             {
                 return NotFound();
             }
+            string thesis = diploma.Thesis.Replace(" ", "");
+
+            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+
+            List<ArticleRecord> articles = ParseDataApi(response.Content);
+
+            List<string> topics = new List<string>();
+
+            foreach(ArticleRecord item in articles)
+            {
+                topics.AddRange(item.Topics);
+            }
+            var list = topics.Distinct().ToList();
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId", diploma.DiplomaId);
+            ViewData["Topics"] = new SelectList(list);
             return View(diploma);
         }
 
+        
         // POST: Diplomata/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -220,7 +234,7 @@ namespace Team3Assig.Controllers
                 List<string> topics = new List<string>();
                 foreach (var topic in item["topics"])
                 {
-                    topics.Add(topic.ToString());
+                    topics.Add(topic.Value<string>());
                 }
                 string downloadURL = item.Value<string>("downloadUrl");
 
