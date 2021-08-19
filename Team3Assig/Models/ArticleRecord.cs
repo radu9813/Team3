@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Team3Assig.Controllers
+namespace Team3Assig.Models
 {
     public class ArticleRecord
     {
