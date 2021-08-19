@@ -70,23 +70,14 @@ namespace Team3Assig.Controllers
                 return NotFound();
             }
 
-            string thesis = diploma.Thesis.Replace(" ", "");
-
-            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-
-            return View(ParseDataApi(response.Content));
+            var articles = CoreApiCall(diploma.Thesis);
+            return View(articles);
         }
 
         // GET: Diplomata/Create
         public IActionResult Create()
         {
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId");
-
-
-            ViewData["Topics"] = new SelectList(new List<int>{ 1, 2, 3, 4, 5 });
             return View();
         }
 
@@ -121,24 +112,9 @@ namespace Team3Assig.Controllers
             {
                 return NotFound();
             }
-            string thesis = diploma.Thesis.Replace(" ", "");
-
-            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-
-            List<ArticleRecord> articles = ParseDataApi(response.Content);
-
-            List<string> topics = new List<string>();
-
-            foreach(ArticleRecord item in articles)
-            {
-                topics.AddRange(item.Topics);
-            }
-            var list = topics.Distinct().ToList();
+           
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId", diploma.DiplomaId);
-            ViewData["Topics"] = new SelectList(list);
+            ViewData["Topics"] = new SelectList(GetTopicsFromArticles(diploma.Thesis));
             return View(diploma);
         }
 
@@ -214,34 +190,56 @@ namespace Team3Assig.Controllers
             return _context.Diploma.Any(e => e.DiplomaId == id);
         }
 
-        public List<ArticleRecord> ParseDataApi(string content)
+        private List<string> GetTopicsFromArticles(string thesis)
         {
-            var json = JObject.Parse(content);
+            List<ArticleRecord> articles = CoreApiCall(thesis);
+            List<string> topics = new();
 
-            var result = new List<ArticleRecord>();
-
-            var data = json["data"].Take(5);
-            foreach (var item in data)
+            foreach (ArticleRecord item in articles)
             {
-                int id = item.Value<int>("id");
-                List<string> authors = new List<string>();
-                foreach(var author in item["authors"])
-                {
-                    authors.Add(author.ToString());
-                }
-
-                string title = item.Value<string>("title");
-                List<string> topics = new List<string>();
-                foreach (var topic in item["topics"])
-                {
-                    topics.Add(topic.Value<string>());
-                }
-                string downloadURL = item.Value<string>("downloadUrl");
-
-                result.Add(new ArticleRecord(id, authors, title, topics, downloadURL));
+                topics.AddRange(item.Topics);
             }
 
-            return result;
+            return  topics.Distinct().ToList();
+        }
+        private List<ArticleRecord> CoreApiCall(string thesis)
+        {
+            string thesisString = thesis.Replace(" ", "");
+
+            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesisString}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+
+            return CreateArticlesRecordFromJson(response.Content);
+        }
+
+        public List<ArticleRecord> CreateArticlesRecordFromJson(string content)
+        {
+            var json = JObject.Parse(content);
+            var data = json["data"].Take(5);
+
+            return data.Select(CreateArticleRecord).ToList();
+        }
+
+        private ArticleRecord CreateArticleRecord(JToken token)
+        {
+            int id = token.Value<int>("id");
+            List<string> authors = new List<string>();
+            foreach (var author in token["authors"])
+            {
+                authors.Add(author.ToString());
+            }
+
+            string title = token.Value<string>("title");
+            List<string> topics = new List<string>();
+            foreach (var topic in token["topics"])
+            {
+                topics.Add(topic.Value<string>());
+            }
+            string downloadURL = token.Value<string>("downloadUrl");
+
+            return new ArticleRecord(id, authors, title, topics, downloadURL);
         }
     }
 }
