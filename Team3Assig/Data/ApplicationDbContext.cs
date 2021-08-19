@@ -19,9 +19,9 @@ namespace Team3Assig.Data
             modelBuilder.Entity<Student>().HasData(new { StudentId = 1, Name = "Name1", Birthdate = new DateTime(2001, 07, 20), EmailAddress = "example@email.com" });
             modelBuilder.Entity<Student>().HasData(new { StudentId = 2, Name = "Name2", Birthdate = new DateTime(1980, 02, 28), EmailAddress = "example2@email.com" });
             modelBuilder.Entity<Student>().HasData(new { StudentId = 3, Name = "Name3", Birthdate = new DateTime(1988, 12, 30), EmailAddress = "example3@email.com" });
-            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 1, Thesis = "Computer Science", Abstract = "Big description of the Thesis", Completeness = true, Supervisor = "Borys" });
-            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 2, Thesis = "Computer Engineering", Abstract = "Big description of the Thesis", Completeness = true, Supervisor = "Borys" });
-            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 3, Thesis = "Computer Architecture", Abstract = "Big description of the Thesis", Completeness = true, Supervisor = "Borys" });
+            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 1, Thesis = "Computer Science", Abstract = "Abstract not set yet, please visit edit page.", Completeness = true, Supervisor = "Borys" });
+            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 2, Thesis = "Computer Engineering", Abstract = "Abstract not set yet, please visit edit page.", Completeness = true, Supervisor = "Borys" });
+            modelBuilder.Entity<Diploma>().HasData(new Diploma { DiplomaId = 3, Thesis = "Computer Architecture", Abstract = "Abstract not set yet, please visit edit page.", Completeness = true, Supervisor = "Borys" });
             base.OnModelCreating(modelBuilder);
 
         }
