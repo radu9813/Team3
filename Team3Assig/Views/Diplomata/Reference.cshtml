@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ArticleRecord>
+
+@{
+    ViewData["Title"] = "Reference";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>References</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Authors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DownloadUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topics)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownloadUrl)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
