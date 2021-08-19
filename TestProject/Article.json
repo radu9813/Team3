@@ -1,0 +1,613 @@
+{
+  "status": "OK",
+  "totalHits": 23957,
+  "data": [
+    {
+      "id": "387312837",
+      "authors": [
+        "Lin, Qinwei",
+        "Li, Chao",
+        "Zhao, Xifeng",
+        "Chen, Xianhai"
+      ],
+      "contributors": [],
+      "datePublished": "2021-02-01T00:00:00",
+      "description": "Decentralization has been widely acknowledged as a core virtue of\nblockchains. However, in the past, there have been few measurement studies on\nmeasuring and comparing the actual level of decentralization between existing\nblockchains using multiple metrics and granularities. This paper presents a new\ncomparison study of the degree of decentralization in Bitcoin and Ethereum, the\ntwo most prominent blockchains, with various decentralization metrics and\ndifferent granularities within the time dimension. Specifically, we measure the\ndegree of decentralization in the two blockchains during 2019 by computing the\ndistribution of mining power with three metrics (Gini coefficient, Shannon\nentropy, and Nakamoto coefficient) as well as three granularities (days, weeks,\nand months). Our measurement results with different metrics and granularities\nreveal the same trend that, compared with each other, the degree of\ndecentralization in Bitcoin is higher, while the degree of decentralization in\nEthereum is more stable. To obtain the cross-interval information missed in the\nfixed window based measurements, we propose the sliding window based\nmeasurement approach. The corresponding results demonstrate that the use of\nsliding windows could reveal additional cross-interval information overlooked\nby the fixed window based measurements, thus enhancing the effectiveness of\nmeasuring decentralization in terms of continuous trends and abnormal\nsituations. We believe that the methodologies and findings in this paper can\nfacilitate future studies of decentralization in blockchains",
+      "identifiers": [
+        "oai:arXiv.org:2101.10699",
+        null
+      ],
+      "language": {
+        "code": "en",
+        "id": 9,
+        "name": "English"
+      },
+      "relations": [],
+      "repositories": [
+        {
+          "id": "144",
+          "openDoarId": 0,
+          "name": "arXiv.org e-Print Archive",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 1,
+        "metadataAdded": 1614650555000,
+        "metadataUpdated": 1614650555000,
+        "depositedDate": 1612310400000
+      },
+      "subjects": [
+        "text"
+      ],
+      "title": "Measuring Decentralization in Bitcoin and Ethereum using Multiple\n  Metrics and Granularities",
+      "topics": [
+        "Computer Science - Cryptography and Security",
+        "Computer Science - Databases"
+      ],
+      "types": [],
+      "year": 2021,
+      "fulltextIdentifier": "http://arxiv.org/abs/2101.10699",
+      "oai": "oai:arXiv.org:2101.10699",
+      "downloadUrl": "http://arxiv.org/abs/2101.10699"
+    },
+    {
+      "id": "387308698",
+      "authors": [
+        "Tu, James",
+        "Wang, Tsunhsuan",
+        "Wang, Jingkang",
+        "Manivasagam, Sivabalan",
+        "Ren, Mengye",
+        "Urtasun, Raquel"
+      ],
+      "contributors": [],
+      "datePublished": "2021-01-16T00:00:00",
+      "description": "Growing at a very fast pace, modern autonomous systems will soon be deployed\nat scale, opening up the possibility for cooperative multi-agent systems. By\nsharing information and distributing workloads, autonomous agents can better\nperform their tasks and enjoy improved computation efficiency. However, such\nadvantages rely heavily on communication channels which have been shown to be\nvulnerable to security breaches. Thus, communication can be compromised to\nexecute adversarial attacks on deep learning models which are widely employed\nin modern systems. In this paper, we explore such adversarial attacks in a\nnovel multi-agent setting where agents communicate by sharing learned\nintermediate representations. We observe that an indistinguishable adversarial\nmessage can severely degrade performance, but becomes weaker as the number of\nbenign agents increase. Furthermore, we show that transfer attacks are more\ndifficult in this setting when compared to directly perturbing the inputs, as\nit is necessary to align the distribution of communication messages with domain\nadaptation. Finally, we show that low-budget online attacks can be achieved by\nexploiting the temporal consistency of streaming sensory inputs",
+      "identifiers": [
+        "oai:arXiv.org:2101.06560",
+        null
+      ],
+      "language": {
+        "code": "en",
+        "id": 9,
+        "name": "English"
+      },
+      "relations": [],
+      "repositories": [
+        {
+          "id": "144",
+          "openDoarId": 0,
+          "name": "arXiv.org e-Print Archive",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 1,
+        "metadataAdded": 1614650480000,
+        "metadataUpdated": 1614650480000,
+        "depositedDate": 1611014400000
+      },
+      "subjects": [
+        "text"
+      ],
+      "title": "Adversarial Attacks On Multi-Agent Communication",
+      "topics": [
+        "Computer Science - Machine Learning",
+        "Computer Science - Cryptography and Security",
+        "Computer Science - Computer Vision and Pattern Recognition"
+      ],
+      "types": [],
+      "year": 2021,
+      "fulltextIdentifier": "http://arxiv.org/abs/2101.06560",
+      "oai": "oai:arXiv.org:2101.06560",
+      "downloadUrl": "http://arxiv.org/abs/2101.06560"
+    },
+    {
+      "id": "159135036",
+      "authors": [
+        "LA MELIA, VITO"
+      ],
+      "contributors": [
+        "Spataro, Luca"
+      ],
+      "datePublished": "2088-02-19T00:00:00",
+      "description": "L’obiettivo della presente tesi è di fornire informazioni esaustive, su tre principali macro aree. Nel primo capitolo andremo a parlare della Blockchain, delineando le caratteristiche e le proprietà racchiuse all’interno di tale tecnologia. Nel secondo capitolo andremo a parlare dell’affascinante mondo delle criptovalute, principalmente del Bitcoin. Nato nel 2009, per rendere più sicure, anonime e veloci le transazioni online, il Bitcoin (BTC) si è presto trasformato in un fenomeno di massa, dando anche vita ad altre criptovalute all’apparenza simili nella forma e nel funzionamento. Nel terzo ed ultimo capitolo, parleremo del progetto Ethereum che ha portato alla consacrazione “definitiva”, almeno per ora, dei contratti intelligenti detti anche Smart Contract. Grazie ad essi è una nata una nuova procedura di crowdfunding le Initial Coin Offering. Andremo ad analizzare e a descrivere in maniera approfondita cosa sono e quali sono le principali funzioni delle ICO, confrontando le caratteristiche che vi sono alla base delle medesime, con le attuali procedure esistenti, come il fenomeno Kickstarter e la raccolta di capitali attraverso le IPO, all’interno dei mercati regolamentati. Evidenzieremo da un lato, i vantaggi e svantaggi per coloro che creano start up usando tale metodologia. Dall’altro lato, per coloro che vogliono investire del denaro, analizzeremo i punti cardine da tenere a mente prima di “donare” denaro in queste nuove realtà",
+      "identifiers": [
+        "oai:etd.adm.unipi.it:etd-02022018-012111",
+        null
+      ],
+      "publisher": "'Pisa University Press'",
+      "relations": [],
+      "repositories": [
+        {
+          "id": "540",
+          "openDoarId": 0,
+          "name": "Electronic Thesis and Dissertation Archive - Università di Pisa",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1530940715000,
+        "metadataUpdated": 1619615935000,
+        "depositedDate": 1529967600000
+      },
+      "subjects": [
+        "text"
+      ],
+      "title": "Blockchain, Bitcoin and the synergy between ICO and Smart Contract",
+      "topics": [
+        "ECONOMIA E MANAGEMENT"
+      ],
+      "types": [],
+      "year": 2088,
+      "oai": "oai:etd.adm.unipi.it:etd-02022018-012111",
+      "downloadUrl": ""
+    },
+    {
+      "id": "237082655",
+      "authors": [
+        "DONADIO, VALERIA"
+      ],
+      "contributors": [
+        "Navarretta, Emanuela"
+      ],
+      "datePublished": "2089-07-12T00:00:00",
+      "description": "La tecnologia Blockchain, “catena di blocchi”, è in grado di ospitare al suo interno fenomeni di essenziale rilevanza giuridica. Questi, nella loro evoluzione, acquistano una veste informatizzata, che ne consente la circolazione attraverso i “registri distribuiti”, ossia i “Distributed Ledgers” che stanno alla base della DLT (Distributed Ledger Technology).\nÈ questo, per esempio, il caso delle criptovalute: sin dal conio dei Bitcoin , le cryptocurrencies hanno acquistato una crescente popolarità e hanno imposto l’individuazione di categorie giuridiche entro cui la moneta virtuale potesse essere correttamente classificata.\nLa Blockchain non si identifica affatto, tuttavia, con il solo fenomeno della criptomoneta. La catena di blocchi è, piuttosto, una super-tecnologia, la cui applicazione può essere adattata ad una serie ulteriore di settori e attività, la cui identificazione e regolamentazione richiede l’intervento del giurista del terzo millennio.\nTra le aree di massima potenzialità della tecnologia Blockchain si colloca quella della tutela della proprietà intellettuale: la “coppia perfetta” formata da IP Law e Distributed Ledger Technology (DLT) è decantata nel dibattito scientifico e promossa dalle imprese che operano nel settore creativo.\nDue recenti Risoluzioni del Parlamento europeo confermano tale dato e segnalano la necessità di tratteggiare le linee di sviluppo della tecnologia Blockchain nel settore della tutela della proprietà intellettuale",
+      "identifiers": [
+        "oai:etd.adm.unipi.it:etd-06252019-114508",
+        null
+      ],
+      "publisher": "'Pisa University Press'",
+      "relations": [],
+      "repositories": [
+        {
+          "id": "540",
+          "openDoarId": 0,
+          "name": "Electronic Thesis and Dissertation Archive - Università di Pisa",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1572929804000,
+        "metadataUpdated": 1623025225000,
+        "depositedDate": 1570143600000
+      },
+      "subjects": [
+        "text"
+      ],
+      "title": "Blockchain e nuove frontiere di tutela del diritto d'autore",
+      "topics": [
+        "GIURISPRUDENZA"
+      ],
+      "types": [],
+      "year": 2089,
+      "oai": "oai:etd.adm.unipi.it:etd-06252019-114508",
+      "downloadUrl": ""
+    },
+    {
+      "id": "427390211",
+      "authors": [
+        "Bouri, Elie",
+        "Lau, Chi Keung Marco",
+        "Saeed, Tareq",
+        "Wang, Shixuan",
+        "Zhao, Yuqian"
+      ],
+      "contributors": [],
+      "datePublished": "2022-10-21T00:00:00",
+      "identifiers": [
+        "oai:https://research.tees.ac.uk/ws/oai:openaire_cris_publications/a649dbc3-c595-4938-8af4-ad40740bd457",
+        "10.1016/j.irfa.2021.101784"
+      ],
+      "publisher": "'Elsevier BV'",
+      "relations": [],
+      "repositories": [
+        {
+          "id": "278",
+          "openDoarId": 0,
+          "name": "Teeside University's Research Repository",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1621190702000,
+        "metadataUpdated": 1627723870000,
+        "depositedDate": 1621055257000
+      },
+      "subjects": [
+        "article"
+      ],
+      "title": "On the intraday return curves of Bitcoin: Predictability and trading opportunities",
+      "topics": [],
+      "types": [],
+      "year": 2022,
+      "doi": "10.1016/j.irfa.2021.101784",
+      "oai": "oai:https://research.tees.ac.uk/ws/oai:openaire_cris_publications/a649dbc3-c595-4938-8af4-ad40740bd457",
+      "downloadUrl": ""
+    },
+    {
+      "id": "427390396",
+      "authors": [
+        "Bouri, Elie",
+        "Lau, Chi Keung Marco",
+        "Saeed, Tareq",
+        "Wang, Shixuan",
+        "Zhao, Yuqian"
+      ],
+      "contributors": [],
+      "datePublished": "2022-10-21T00:00:00",
+      "identifiers": [
+        "oai:https://research.tees.ac.uk/ws/oai:publications/a649dbc3-c595-4938-8af4-ad40740bd457",
+        "10.1016/j.irfa.2021.101784"
+      ],
+      "publisher": "'Elsevier BV'",
+      "relations": [],
+      "repositories": [
+        {
+          "id": "278",
+          "openDoarId": 0,
+          "name": "Teeside University's Research Repository",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1621191240000,
+        "metadataUpdated": 1627724643000,
+        "depositedDate": 1621055257000
+      },
+      "subjects": [
+        "article"
+      ],
+      "title": "On the intraday return curves of Bitcoin: Predictability and trading opportunities",
+      "topics": [],
+      "types": [],
+      "year": 2022,
+      "doi": "10.1016/j.irfa.2021.101784",
+      "oai": "oai:https://research.tees.ac.uk/ws/oai:publications/a649dbc3-c595-4938-8af4-ad40740bd457",
+      "downloadUrl": ""
+    },
+    {
+      "id": "344687222",
+      "authors": [
+        "Soimu, Ana"
+      ],
+      "contributors": [
+        "Rodrigues, Luis Manuel da Silva"
+      ],
+      "datePublished": "2023-01-03T00:00:00",
+      "description": "Over a long period of time, the expression “Cash is King” has been considered an undeniable fact. However, due to technological developments inrecent years, the payment industry has undergone major transformations, with the emergence of new payment methods such as Near Field Communication (NFC), mobile payment, or cryptocurrencies (i.e. bitcoin).This  Work  Project,  conducted  within  a  Direct  Research  Internship  at  SIBS  SGPS,  aims  to propose an analysis of the dematerialization of currency, focusing on the impact created by this change in the payments industry, Portuguese society as well as onSIBS’s business",
+      "identifiers": [
+        "oai:run.unl.pt:10362/107291",
+        null
+      ],
+      "relations": [],
+      "repositories": [
+        {
+          "id": "1958",
+          "openDoarId": 0,
+          "name": "Repositório da Universidade Nova de Lisboa",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1606148003000,
+        "metadataUpdated": 1627921711000,
+        "depositedDate": 1606030243000
+      },
+      "subjects": [
+        "masterThesis"
+      ],
+      "title": "Dematerialization of the currency: a study of the possible impacts on portuguese society and sSibs's business",
+      "topics": [
+        "Cashless societies",
+        "Dematerialization of money",
+        "Digital payments",
+        "Mobile payments",
+        "Domínio/Área Científica::Ciências Sociais::Economia e Gestão"
+      ],
+      "types": [],
+      "year": 2023,
+      "oai": "oai:run.unl.pt:10362/107291",
+      "downloadUrl": ""
+    },
+    {
+      "id": "334754870",
+      "authors": [
+        "Venter, Pierre J.",
+        "Mare, Eben",
+        "Pindza, Edson"
+      ],
+      "contributors": [],
+      "datePublished": "2920-01-01T00:00:00",
+      "description": "Abstract:In this paper, two univariate generalised autoregressive conditional heteroskedasticity (GARCH) option pricing models are applied to Bitcoin and the Cryptocurrency Index (CRIX). The first model is symmetric and the other takes asymmetric effects into account. Furthermore, the accuracy of the GARCH option pricing model applied to Bitcoin is tested. Empirical results indicate that asymmetry is not an important factor to consider when pricing options on Bitcoin or CRIX, this is consistent with findings in the literature. In addition, the GARCH option pricing model provides realistic price discovery within the bid-ask spreads suggested by the market",
+      "identifiers": [
+        "uj:38608",
+        null
+      ],
+      "language": {
+        "code": "en",
+        "id": 9,
+        "name": "English"
+      },
+      "relations": [],
+      "repositories": [
+        {
+          "id": "617",
+          "openDoarId": 0,
+          "name": "University of Johannesburg Institutional Repository",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 1,
+        "metadataAdded": 1602007191000,
+        "metadataUpdated": 1623043637000,
+        "depositedDate": 1600988400000
+      },
+      "subjects": [
+        "Article"
+      ],
+      "title": "Price discovery in the cryptocurrency option market : a univariate GARCH approach",
+      "topics": [
+        "GARCH",
+        "Option pricing",
+        "Cryptocurrencie"
+      ],
+      "types": [],
+      "year": 2920,
+      "fulltextIdentifier": "https://core.ac.uk/download/334754870.pdf",
+      "downloadUrl": "https://core.ac.uk/download/334754870.pdf"
+    },
+    {
+      "id": "389474572",
+      "authors": [
+        "Simões, João Nuno Marchão Casal"
+      ],
+      "contributors": [
+        "Pinheiro, Carlos"
+      ],
+      "datePublished": "2022-01-14T00:00:00",
+      "description": "This Master Thesis addresses the relationship between Market/ Investor Sentiment and the Crypto-Currencies Market using a database with 28 variables, such as the Crypto-Currencies Prices (Crypto-Currencies that had more than one Billion USD in Market Cap were selected), the S&P500 Index stock prices, the GDP of the US or Europe, Internet World Statistical data, among others, but most importantly Investor/ Market Sentiment data, gathered from Duke’s University surveys. All this data was then entered into SPSS and analyzed as Panel Data.\r\nThe time period for this research spans from 2013 to 2019, 2013 because it is the first year were the market prices of Crypto-Currencies are available. Even though Bitcoin was created in 2008 (Nakamoto, 2008), market data about Crypto-Currencies only appeared in 2013.\r\nWe run OLS and 2SLS regressions to test the significance, causality and the relationship between Sentiment and Crypto-Currencies. For the 2SLS, two Lagged variables were added. Additional Robustness tests were done including regressions with only Bitcoin and Litecoin. With this we find that there is a strong correlation and significance between the level of optimism and/ or pessimism in the financial markets and in Crypto-Currencies and that the relationship between them is mostly non-linear according to our research and analysis.\r\nOur results suggest that the price of Crypto-Currencies is an increasing function of sentiment, which calls for considering Behavioral Economics tenets when analyzing Crypto-Currencies markets’. Our findings are confirmed by robustness tests deploying alternative measures of the variable of interest – Sentiment – as well as alternative controls.\r\nThe findings suggest that more regulation in the market is needed to avoid extreme volatility for investors. Crypto-Currencies show bigger growth when the sentiment towards the market is pessimistic, such as when there is a crisis either a monetary or a political one, because Crypto-Currencies are still associated with somewhat non-deterministic movements. It is now our job to pursue regulation and to attract more corporate investors so that Crypto-Currencies could start to be more accepted as financial assets, and not to be seen as just “internet money”, as unfortunately they are still perceived by many nowadays",
+      "identifiers": [
+        "oai:comum.rcaap.pt:10400.26/35911",
+        null
+      ],
+      "relations": [],
+      "repositories": [
+        {
+          "id": "1956",
+          "openDoarId": 0,
+          "name": "Repositório Comum",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1616140824000,
+        "metadataUpdated": 1627921927000,
+        "depositedDate": 1615904817000
+      },
+      "subjects": [
+        "masterThesis"
+      ],
+      "title": "Crypto-Currencies: does sentiment play a role?",
+      "topics": [
+        "Bitcoin",
+        "Ethereum",
+        "Crypto-Currency",
+        "Behavioral Finance",
+        "Domínio/Área Científica::Ciências Sociais::Economia e Gestão"
+      ],
+      "types": [],
+      "year": 2022,
+      "oai": "oai:comum.rcaap.pt:10400.26/35911",
+      "downloadUrl": ""
+    },
+    {
+      "id": "326333123",
+      "authors": [
+        "Freiberger, Matthias"
+      ],
+      "contributors": [
+        "Dambre, Joni",
+        "Bienstman, Peter"
+      ],
+      "datePublished": "2023-06-23T00:00:00",
+      "identifiers": [
+        "oai:archive.ugent.be:8666053",
+        null
+      ],
+      "language": {
+        "code": "en",
+        "id": 9,
+        "name": "English"
+      },
+      "publisher": "Universiteit Gent. Faculteit Ingenieurswetenschappen en Architectuur",
+      "relations": [],
+      "repositories": [
+        {
+          "id": "1493",
+          "openDoarId": 0,
+          "name": "Ghent University Academic Bibliography",
+          "urlHomepage": null,
+          "urlOaipmh": null,
+          "uriJournals": null,
+          "physicalName": "noname",
+          "source": null,
+          "software": null,
+          "metadataFormat": null,
+          "description": null,
+          "journal": null,
+          "roarId": 0,
+          "baseId": 0,
+          "pdfStatus": null,
+          "nrUpdates": 0,
+          "disabled": false,
+          "lastUpdateTime": null,
+          "repositoryLocation": null
+        }
+      ],
+      "repositoryDocument": {
+        "pdfStatus": 0,
+        "metadataAdded": 1592950493000,
+        "metadataUpdated": 1624655468000,
+        "depositedDate": 1592901489000
+      },
+      "subjects": [
+        "dissertation",
+        "info:eu-repo/semantics/doctoralThesis",
+        "info:eu-repo/semantics/publishedVersion"
+      ],
+      "title": "Scaling up integrated photonic reservoirs towards low-power high-bandwidth computing",
+      "topics": [
+        "Technology and Engineering"
+      ],
+      "types": [],
+      "year": 2023,
+      "fulltextIdentifier": "https://core.ac.uk/download/pdf/326333123.pdf",
+      "oai": "oai:archive.ugent.be:8666053",
+      "downloadUrl": ""
+    }
+  ]
+}

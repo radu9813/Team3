@@ -20,12 +20,13 @@ namespace Team3Assig.Controllers
 
 
         /// https://core.ac.uk:443/api-v2/articles/search/{search}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apikey}
-        
+
         public DiplomataController(ApplicationDbContext context, IDiplomataControllerSettings diplomataControllerSettings)
         {
             apiKey = diplomataControllerSettings.ApiKey;
             _context = context;
         }
+        
 
         // GET: Diplomata
         public async Task<IActionResult> Index()
@@ -174,7 +175,7 @@ namespace Team3Assig.Controllers
             return _context.Diploma.Any(e => e.DiplomaId == id);
         }
 
-        private List<ArticleRecord> ParseDataApi(string content)
+        public List<ArticleRecord> ParseDataApi(string content)
         {
             var json = JObject.Parse(content);
 
