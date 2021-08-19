@@ -10,7 +10,7 @@ namespace TestProject
     public class RequestTests
     {
         [Fact]
-        public void TestJsonResponse()
+        public void ArticleResponseTest()
         {
              //Assume
             string content = LoadJsonFromResource();
