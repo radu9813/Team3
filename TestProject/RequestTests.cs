@@ -18,7 +18,7 @@ namespace TestProject
             ApplicationDbContext applicationDbContext = null;
             DiplomataController diplomataController = new DiplomataController(applicationDbContext, diplomataControllerSettingsMock.Object);
             //Act
-            var result = diplomataController.ParseDataApi(content);
+            var result = diplomataController.CreateArticlesRecordFromJson(content);
             string[] authors = { "Lin, Qinwei", "Li, Chao", "Zhao, Xifeng", "Chen, Xianhai" };
             string downloadUrl = "http://arxiv.org/abs/2101.10699";
 
