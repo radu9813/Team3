@@ -15,7 +15,8 @@ namespace TestProject
              //Assume
             string content = LoadJsonFromResource();
             var diplomataControllerSettingsMock = new Mock<IDiplomataControllerSettings>();
-            DiplomataController diplomataController = new DiplomataController(diplomataControllerSettingsMock.Object);
+            ApplicationDbContext applicationDbContext = null;
+            DiplomataController diplomataController = new DiplomataController(applicationDbContext, diplomataControllerSettingsMock.Object);
             //Act
             var result = diplomataController.ParseDataApi(content);
             string[] authors = { "Lin, Qinwei", "Li, Chao", "Zhao, Xifeng", "Chen, Xianhai" };
