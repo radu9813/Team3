@@ -52,15 +52,26 @@ namespace Team3Assig.Controllers
                 return NotFound();
             }
 
-            string thesis = diploma.Thesis.Replace(" ", "");
-
-            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesis}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-            ParseDataApi(response.Content);
-
             return View(diploma);
+        }
+        public async Task<IActionResult> Reference(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var diploma = await _context.Diploma
+                .Include(d => d.Student)
+                .FirstOrDefaultAsync(m => m.DiplomaId == id);
+            if (diploma == null)
+            {
+                return NotFound();
+            }
+
+            var articles = CoreApiCall(diploma.Thesis);
+            return View(articles);
         }
 
         // GET: Diplomata/Create
@@ -75,10 +86,11 @@ namespace Team3Assig.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DiplomaId,Thesis,Abstract,Completeness,Supervisor")] Diploma diploma)
+        public async Task<IActionResult> Create([Bind("DiplomaId,Thesis,Completeness,Supervisor")] Diploma diploma)
         {
             if (ModelState.IsValid)
             {
+                diploma.Abstract = "Abstract not set yet, please visit edit page.";
                 _context.Add(diploma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -100,10 +112,13 @@ namespace Team3Assig.Controllers
             {
                 return NotFound();
             }
+           
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId", diploma.DiplomaId);
+            ViewData["Topics"] = new SelectList(GetTopicsFromArticles(diploma.Thesis));
             return View(diploma);
         }
 
+        
         // POST: Diplomata/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -175,34 +190,56 @@ namespace Team3Assig.Controllers
             return _context.Diploma.Any(e => e.DiplomaId == id);
         }
 
-        public List<ArticleRecord> ParseDataApi(string content)
+        private List<string> GetTopicsFromArticles(string thesis)
         {
-            var json = JObject.Parse(content);
+            List<ArticleRecord> articles = CoreApiCall(thesis);
+            List<string> topics = new();
 
-            var result = new List<ArticleRecord>();
-
-            var data = json["data"].Take(5);
-            foreach (var item in data)
+            foreach (ArticleRecord item in articles)
             {
-                int id = item.Value<int>("id");
-                List<string> authors = new List<string>();
-                foreach(var author in item["authors"])
-                {
-                    authors.Add(author.ToString());
-                }
-
-                string title = item.Value<string>("title");
-                List<string> topics = new List<string>();
-                foreach (var topic in item["topics"])
-                {
-                    topics.Add(topic.ToString());
-                }
-                string downloadURL = item.Value<string>("downloadUrl");
-
-                result.Add(new ArticleRecord(id, authors, title, topics, downloadURL));
+                topics.AddRange(item.Topics);
             }
 
-            return result;
+            return  topics.Distinct().ToList();
+        }
+        private List<ArticleRecord> CoreApiCall(string thesis)
+        {
+            string thesisString = thesis.Replace(" ", "");
+
+            var client = new RestClient($"https://core.ac.uk:443/api-v2/articles/search/{thesisString}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+
+            return CreateArticlesRecordFromJson(response.Content);
+        }
+
+        public List<ArticleRecord> CreateArticlesRecordFromJson(string content)
+        {
+            var json = JObject.Parse(content);
+            var data = json["data"].Take(5);
+
+            return data.Select(CreateArticleRecord).ToList();
+        }
+
+        private ArticleRecord CreateArticleRecord(JToken token)
+        {
+            int id = token.Value<int>("id");
+            List<string> authors = new List<string>();
+            foreach (var author in token["authors"])
+            {
+                authors.Add(author.ToString());
+            }
+
+            string title = token.Value<string>("title");
+            List<string> topics = new List<string>();
+            foreach (var topic in token["topics"])
+            {
+                topics.Add(topic.Value<string>());
+            }
+            string downloadURL = token.Value<string>("downloadUrl");
+
+            return new ArticleRecord(id, authors, title, topics, downloadURL);
         }
     }
 }
