@@ -7,9 +7,12 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Operator"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -32,29 +35,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thesis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Abstract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Completeness)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supervisor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DiplomaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DiplomaId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thesis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abstract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completeness)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supervisor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                </td>
+                <td>
+                    @if (User.IsInRole("Operator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.DiplomaId">Edit</a>
+                        <span> | </span>
+                        <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
+                        <span> | </span>
+                        <a asp-action="Delete" asp-route-id="@item.DiplomaId">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
+                    }
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +76,7 @@ namespace Team3Assig.Controllers
         }
 
         // GET: Diplomata/Create
+        [Authorize(Roles = "Operator")]
         public IActionResult Create()
         {
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId");
@@ -86,6 +88,7 @@ namespace Team3Assig.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Create([Bind("DiplomaId,Thesis,Completeness,Supervisor")] Diploma diploma)
         {
             if (ModelState.IsValid)
@@ -100,6 +103,7 @@ namespace Team3Assig.Controllers
         }
 
         // GET: Diplomata/Edit/5
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -124,6 +128,7 @@ namespace Team3Assig.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Edit(int id, [Bind("DiplomaId,Thesis,Abstract,Completeness,Supervisor")] Diploma diploma)
         {
             if (id != diploma.DiplomaId)
@@ -156,6 +161,7 @@ namespace Team3Assig.Controllers
         }
 
         // GET: Diplomata/Delete/5
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -177,6 +183,7 @@ namespace Team3Assig.Controllers
         // POST: Diplomata/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var diploma = await _context.Diploma.FindAsync(id);

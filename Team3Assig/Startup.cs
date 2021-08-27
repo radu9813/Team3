@@ -35,8 +35,11 @@ namespace Team3Assig
             services.AddSingleton<IDiplomataControllerSettings, DiplomataControllerSettings>();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            EnsureUsersCreated(services).Wait();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +69,58 @@ namespace Team3Assig
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        private static async Task EnsureUsersCreated(IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
+
+            var adminUser = await EnsureUserCreated(userManager, "radu.sechei@principal33.com", "Parola1@");
+            var operatorUser = await EnsureUserCreated(userManager, "radu.sechei2@principal33.com", "Parola2@");
+
+            var adminRole = await EnsureRoleCreated(serviceProvider, "Administrator");
+            var operatorRole = await EnsureRoleCreated(serviceProvider, "Operator");
+
+            await userManager.AddToRoleAsync(adminUser, adminRole.Name);
+            await userManager.AddToRoleAsync(operatorUser, operatorRole.Name);
+
+            var users = await userManager.Users.ToListAsync();
+            Console.WriteLine($"There are {users.Count} users now.");
+        }
+
+        private static async Task<IdentityUser> EnsureUserCreated(UserManager<IdentityUser> userManager, string name, string password)
+        {
+            var adminUser = await userManager.FindByNameAsync(name);
+            if (adminUser == null)
+            {
+                await userManager.CreateAsync(new IdentityUser(name));
+                adminUser = await userManager.FindByNameAsync(name);
+                var tokenChangePassword = await userManager.GeneratePasswordResetTokenAsync(adminUser);
+
+                var result = await userManager.ResetPasswordAsync(adminUser, tokenChangePassword, password);
+
+                if (!adminUser.EmailConfirmed)
+                {
+                    var token = await userManager.GenerateEmailConfirmationTokenAsync(adminUser);
+                    await userManager.ConfirmEmailAsync(adminUser, token);
+                }
+            }
+
+            return adminUser;
+        }
+
+        private static async Task<IdentityRole> EnsureRoleCreated(ServiceProvider serviceProvider, string roleName)
+        {
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+            var adminRole = await roleManager.FindByNameAsync(roleName);
+            if (adminRole == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+                adminRole = await roleManager.FindByNameAsync(roleName);
+            }
+
+            return adminRole;
         }
     }
 }

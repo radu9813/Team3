@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @if (ViewBag.Administrators.Contains(item))
+                    {
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Common User Role</a>
+                        <span> | </span>
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Operator Role</a>
+                    }
+                    else if (ViewBag.Operators.Contains(item))
+                    {
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Common User Role</a>
+                        <span> | </span>
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Administrator Role</a>
+                    }
+                    else
+                    {
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Administrator Role</a>
+                        <span> | </span>
+                        <a asp-action="AssignCommonRole" asp-route-id="@item.Id">Assign Operator Role</a>
+
+                    }
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
