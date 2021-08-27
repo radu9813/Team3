@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Team3Assig.Controllers;
 
+
 namespace Team3Assig
 {
     public class Startup
@@ -38,7 +39,6 @@ namespace Team3Assig
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-
             EnsureUsersCreated(services).Wait();
         }
 
