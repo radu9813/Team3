@@ -7,9 +7,12 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Operator"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table" id="diploma_table">
     <thead>
         <tr>
@@ -34,38 +37,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr data-id="@item.DiplomaId">
-            <td data-field-thesis="@item.Thesis">
-                @Html.DisplayFor(modelItem => item.Thesis)
-            </td>
-            <td data-field-abstract="@item.Abstract">
-                @Html.DisplayFor(modelItem => item.Abstract)
-            </td>
-            <td data-field-completeness="@item.DiplomaId">
-                @Html.DisplayFor(modelItem => item.Completeness)
-            </td>
-            <td data-field-supervizor="@item.Supervisor">
-                @Html.DisplayFor(modelItem => item.Supervisor)
-            </td>
-            <td data-field-studentName="@item.Student.Name">
-                @Html.DisplayFor(modelItem => item.Student.Name)
-            </td>
-            <td>
-                @if (User.IsInRole("Operator"))
-                {
-                    <a asp-action="Edit" asp-route-id="@item.DiplomaId">Edit</a>
-                    <span> | </span>
-                    <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
-                    <span> | </span>
-                    <a asp-action="Delete" asp-route-id="@item.DiplomaId">Delete</a>
-                }
-                else
-                {
-                    <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
-                }
+            <tr data-id="@item.DiplomaId">
+                <td data-field-thesis="@item.Thesis">
+                    @Html.DisplayFor(modelItem => item.Thesis)
+                </td>
+                <td data-field-abstract="@item.Abstract">
+                    @Html.DisplayFor(modelItem => item.Abstract)
+                </td>
+                <td data-field-completeness="@item.DiplomaId">
+                    @Html.DisplayFor(modelItem => item.Completeness)
+                </td>
+                <td data-field-supervizor="@item.Supervisor">
+                    @Html.DisplayFor(modelItem => item.Supervisor)
+                </td>
+                <td data-field-studentName="@item.Student.Name">
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                </td>
+                <td>
+                    @if (User.IsInRole("Operator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.DiplomaId">Edit</a>
+                        <span> | </span>
+                        <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
+                        <span> | </span>
+                        <a asp-action="Delete" asp-route-id="@item.DiplomaId">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.DiplomaId">Details</a>
+                    }
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
