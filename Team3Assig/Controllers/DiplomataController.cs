@@ -10,22 +10,22 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using Team3Assig.Data;
 using Team3Assig.Models;
+using Team3Assig.Services;
 
 namespace Team3Assig.Controllers
 {
     public class DiplomataController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IBroadcastService broadcastService;
 
         private readonly string apiKey;
 
-
-        /// https://core.ac.uk:443/api-v2/articles/search/{search}?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey={apikey}
-
-        public DiplomataController(ApplicationDbContext context, IDiplomataControllerSettings diplomataControllerSettings)
+        public DiplomataController(ApplicationDbContext context, IDiplomataControllerSettings diplomataControllerSettings, IBroadcastService broadcastService)
         {
             apiKey = diplomataControllerSettings.ApiKey;
             _context = context;
+            this.broadcastService = broadcastService;
         }
         
 
@@ -96,6 +96,9 @@ namespace Team3Assig.Controllers
                 diploma.Abstract = "Abstract not set yet, please visit edit page.";
                 _context.Add(diploma);
                 await _context.SaveChangesAsync();
+
+                diploma.Student = _context.Student.Find(diploma.DiplomaId);
+                broadcastService.AddNewDiploma(diploma);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId", diploma.DiplomaId);
@@ -154,6 +157,8 @@ namespace Team3Assig.Controllers
                         throw;
                     }
                 }
+
+                broadcastService.UpdateDiploma(diploma);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DiplomaId"] = new SelectList(_context.Student, "StudentId", "StudentId", diploma.DiplomaId);
@@ -189,6 +194,8 @@ namespace Team3Assig.Controllers
             var diploma = await _context.Diploma.FindAsync(id);
             _context.Diploma.Remove(diploma);
             await _context.SaveChangesAsync();
+
+            broadcastService.RemoveDiploma(diploma);
             return RedirectToAction(nameof(Index));
         }
 

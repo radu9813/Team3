@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Team3Assig.Controllers;
+using Team3Assig.Services;
 
 
 namespace Team3Assig
@@ -28,6 +29,9 @@ namespace Team3Assig
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
+            services.AddSingleton<IBroadcastService, BroadcastService>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(
                         Configuration.GetConnectionString("DefaultConnection")));
@@ -68,6 +72,8 @@ namespace Team3Assig
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
+                endpoints.MapHub<MessageHub>("/messagehub");
             });
         }
 

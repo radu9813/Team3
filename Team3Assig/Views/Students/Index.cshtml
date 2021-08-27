@@ -6,14 +6,13 @@
 }
 
 <h1>Index</h1>
-
 @if (User.IsInRole("Operator"))
 {
     <p>
         <a asp-action="Create">Create New</a>
     </p>
 }
-<table class="table">
+<table class="table" id="student_table">
     <thead>
         <tr>
             <th>
@@ -34,17 +33,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <tr data-id="@item.StudentId">
+                <td data-field-id="@item.StudentId">
                     @Html.DisplayFor(modelItem => item.StudentId)
                 </td>
-                <td>
+                <td data-field-name="@item.Name">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td data-field-birthdate="@item.Birthdate">
                     @Html.DisplayFor(modelItem => item.Birthdate)
                 </td>
-                <td>
+                <td data-field-email="@item.EmailAddress">
                     @Html.DisplayFor(modelItem => item.EmailAddress)
                 </td>
                 <td>
@@ -66,3 +65,8 @@
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script src="~/lib/microsoft-signalr/signalr.js"></script>
+    <script type="text/javascript" src="~/js/signalREvents.js"></script>
+}

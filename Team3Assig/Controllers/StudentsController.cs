@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Team3Assig.Data;
 using Team3Assig.Models;
+using Team3Assig.Services;
 
 namespace Team3Assig.Controllers
 {   
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IBroadcastService broadcastService;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(ApplicationDbContext context, IBroadcastService broadcastService)
         {
             _context = context;
+            this.broadcastService = broadcastService;
         }
 
         
@@ -65,6 +68,8 @@ namespace Team3Assig.Controllers
             {
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+
+                broadcastService.AddNewStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
@@ -118,6 +123,7 @@ namespace Team3Assig.Controllers
                         throw;
                     }
                 }
+                broadcastService.UpdateStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
@@ -151,6 +157,8 @@ namespace Team3Assig.Controllers
             var student = await _context.Student.FindAsync(id);
             _context.Student.Remove(student);
             await _context.SaveChangesAsync();
+
+            broadcastService.RemoveStudent(student);
             return RedirectToAction(nameof(Index));
         }
 

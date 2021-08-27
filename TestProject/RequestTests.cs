@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Team3Assig.Controllers;
 using Team3Assig.Data;
+using Team3Assig.Services;
 using Xunit;
 
 namespace TestProject
@@ -15,8 +16,9 @@ namespace TestProject
              //Assume
             string content = LoadJsonFromResource();
             var diplomataControllerSettingsMock = new Mock<IDiplomataControllerSettings>();
+            var broadcastServiceMock = new Mock<IBroadcastService>();
             ApplicationDbContext applicationDbContext = null;
-            DiplomataController diplomataController = new DiplomataController(applicationDbContext, diplomataControllerSettingsMock.Object);
+            DiplomataController diplomataController = new DiplomataController(applicationDbContext, diplomataControllerSettingsMock.Object, broadcastServiceMock.Object);
             //Act
             var result = diplomataController.CreateArticlesRecordFromJson(content);
             string[] authors = { "Lin, Qinwei", "Li, Chao", "Zhao, Xifeng", "Chen, Xianhai" };
