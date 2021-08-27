@@ -5,11 +5,11 @@ namespace Team3Assig.Services
 {
     public interface IBroadcastService
     {
-        void AddNewStudent(int id, string name, DateTime birthday, string email);
+        void AddNewStudent(Student student);
 
-        void UpdateStudent(int id, string name, DateTime birthday, string email);
+        void UpdateStudent(Student student);
 
-        void RemoveStudent(int id);
+        void RemoveStudent(Student student);
         
         void AddNewDiploma(Diploma diploma);
 

@@ -60,7 +60,7 @@ function updateDiplomaRow(id, thesis, abstract, completeness, supervisor) {
     $(`tr[data-id="${id}"] td[data-field-thesis]`).text(thesis)
     $(`tr[data-id="${id}"] td[data-field-abstract]`).text(abstract)
     $(`tr[data-id="${id}"] td[data-field-completeness]`).replaceWith(check)
-    $(`tr[data-id="${id}"] td[data-field-supervisor]`).text(supervisor)
+    $(`tr[data-id="${id}"] td[data-field-supervizor]`).text(supervisor)
 }
 
 function removeDiplomaRow(id) {

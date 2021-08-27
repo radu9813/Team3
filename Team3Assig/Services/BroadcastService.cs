@@ -16,19 +16,19 @@ namespace Team3Assig.Services
             this.messageHub = messageHub;
         }
 
-        public void AddNewStudent(int id, string name, DateTime birthday, string email)
+        public void AddNewStudent(Student student)
         {
-            messageHub.Clients.All.SendAsync("AddNewStudent", id, name, birthday.ToString(), email);
+            messageHub.Clients.All.SendAsync("AddNewStudent", student.StudentId, student.Name, student.Birthdate.ToString(), student.EmailAddress);
         }
 
-        public void UpdateStudent(int id, string name, DateTime birthday, string email)
+        public void UpdateStudent(Student student)
         {
-            messageHub.Clients.All.SendAsync("UpdateStudent", id, name, birthday.ToString(), email);
+            messageHub.Clients.All.SendAsync("UpdateStudent", student.StudentId, student.Name, student.Birthdate.ToString(), student.EmailAddress);
         }
 
-        public void RemoveStudent(int id)
+        public void RemoveStudent(Student student)
         {
-            messageHub.Clients.All.SendAsync("RemoveStudent", id);
+            messageHub.Clients.All.SendAsync("RemoveStudent", student.StudentId);
         }
 
         public void AddNewDiploma(Diploma diploma)
