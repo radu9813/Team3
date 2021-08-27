@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using Team3Assig.Models;
 using Team3Assig.Services;
 
 namespace Team3Assig.Controllers
-{
+{   
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +23,7 @@ namespace Team3Assig.Controllers
             this.broadcastService = broadcastService;
         }
 
+        
         // GET: Students
         public async Task<IActionResult> Index()
         {
@@ -46,7 +48,9 @@ namespace Team3Assig.Controllers
             return View(student);
         }
 
+
         // GET: Students/Create
+        [Authorize(Roles = "Operator")]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +59,7 @@ namespace Team3Assig.Controllers
         // POST: Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Operator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,Name,Birthdate,EmailAddress")] Student student)
@@ -71,6 +76,7 @@ namespace Team3Assig.Controllers
         }
 
         // GET: Students/Edit/5
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +97,7 @@ namespace Team3Assig.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Edit(int id, [Bind("StudentId,Name,Birthdate,EmailAddress")] Student student)
         {
             if (id != student.StudentId)
@@ -123,6 +130,7 @@ namespace Team3Assig.Controllers
         }
 
         // GET: Students/Delete/5
+        [Authorize(Roles = "Operator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,6 +149,7 @@ namespace Team3Assig.Controllers
         }
 
         // POST: Students/Delete/5
+        [Authorize(Roles = "Operator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
