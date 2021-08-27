@@ -10,6 +10,7 @@ using Team3Assig.Models;
 
 namespace Team3Assig.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
