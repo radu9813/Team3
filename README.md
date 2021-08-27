@@ -1,25 +1,43 @@
-# Team3
+## How to run / deploy
+### Locally (via Docker)
 
-##How to create a docker container and image of the project.
+1. Build the container image
+```bash
+docker build -t p33-team3-app .
 ```
-docker build . -t team-app-3 
+2. Start the app container
+```bash
+docker run -e DATABASE_URL={database_url} -dp {external_port}:80 p33-team3-app
+```
+Replace ```database_url``` with a Postgres Database URI (starting with `postgres://`).  
+Replace ```external_port``` with the desired port on the host machine.
 
-docker run -d -p 8081:80 --name team-app-3-container team-app-3
-```
+### On Heroku
+Ensure you have the Heroku CLI **installed** and **authenticated**.
 
-## How to deploy to heroku 
-Login to heroku
-```
+1. Log into the Heroku Container Registry (you only need to run this once)
+```bash
 heroku login
 heroku container:login
 ```
 
-Push container
-```
-heroku container:push -a tem-app-3 web
+2. Create an app in Heroku (skip this if you already have created an app)
+```bash
+heroku create
 ```
 
-Release the container
+3. Build the container image and push it to the Heroku Registry
+```bash
+heroku container:push -a p33-team3-app web
 ```
-heroku container:release -a team-app-3 web
+
+4. Provision a Postgres database and add required Environment Variables
+```bash
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config:set ASPNETCORE_ENVIRONMENT=Production
+```
+
+5. Release the image to the app
+```bash
+heroku container:release -a p33-team3-app web
 ```
