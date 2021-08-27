@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Team3Assig.Models;
 
 namespace Team3Assig.Services
 {
@@ -30,5 +31,19 @@ namespace Team3Assig.Services
             messageHub.Clients.All.SendAsync("RemoveStudent", id);
         }
 
+        public void AddNewDiploma(Diploma diploma)
+        {
+            messageHub.Clients.All.SendAsync("AddNewDiploma", diploma.DiplomaId, diploma.Thesis, diploma.Abstract, diploma.Completeness, diploma.Supervisor, diploma.Student.Name);
+        }
+
+        public void UpdateDiploma(Diploma diploma)
+        {
+            messageHub.Clients.All.SendAsync("UpdateDiploma", diploma.DiplomaId, diploma.Thesis, diploma.Abstract, diploma.Completeness, diploma.Supervisor);
+        }
+
+        public void RemoveDiploma(Diploma diploma)
+        {
+            messageHub.Clients.All.SendAsync("RemoveDiploma", diploma.DiplomaId);
+        }
     }
 }

@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="diploma_table">
     <thead>
         <tr>
             <th>
@@ -34,20 +34,20 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <tr data-id="@item.DiplomaId">
+                <td data-field-thesis="@item.Thesis">
                     @Html.DisplayFor(modelItem => item.Thesis)
                 </td>
-                <td>
+                <td data-field-abstract="@item.Abstract">
                     @Html.DisplayFor(modelItem => item.Abstract)
                 </td>
-                <td>
+                <td data-field-completeness="@item.DiplomaId">
                     @Html.DisplayFor(modelItem => item.Completeness)
                 </td>
-                <td>
+                <td data-field-supervizor="@item.Supervisor">
                     @Html.DisplayFor(modelItem => item.Supervisor)
                 </td>
-                <td>
+                <td data-field-studentName="@item.Student.Name">
                     @Html.DisplayFor(modelItem => item.Student.Name)
                 </td>
                 <td>
@@ -59,3 +59,8 @@
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script src="~/lib/microsoft-signalr/signalr.js"></script>
+    <script type="text/javascript" src="~/js/signalREvents.js"></script>
+}
