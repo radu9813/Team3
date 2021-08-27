@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Team3Assig.Controllers
-{
+{   
+    [Authorize(Roles ="Administrator")]
     public class UsersController : Controller
     {
         private UserManager<IdentityUser> userManager;
@@ -21,6 +23,7 @@ namespace Team3Assig.Controllers
         public async Task<IActionResult> Index()
         {
             this.ViewData["Administrators"] = await this.userManager.GetUsersInRoleAsync("Administrator");
+            this.ViewData["Operators"] = await this.userManager.GetUsersInRoleAsync("Operator");
             return this.View(await this.userManager.Users.ToListAsync());
         }
 
