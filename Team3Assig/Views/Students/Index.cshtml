@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="student_table">
     <thead>
         <tr>
             <th>
@@ -29,26 +29,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.StudentId">
+                <td data-field-id="@item.StudentId">
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td data-field-name="@item.Name">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td data-field-birthdate="@item.Birthdate">
+                    @Html.DisplayFor(modelItem => item.Birthdate)
+                </td>
+                <td data-field-email="@item.EmailAddress">
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section scripts {
+    <script src="~/lib/microsoft-signalr/signalr.js"></script>
+    <script type="text/javascript" src="~/js/student.js"></script>
+}

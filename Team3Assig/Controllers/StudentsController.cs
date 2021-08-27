@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Team3Assig.Data;
 using Team3Assig.Models;
+using Team3Assig.Services;
 
 namespace Team3Assig.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IBroadcastService broadcastService;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(ApplicationDbContext context, IBroadcastService broadcastService)
         {
             _context = context;
+            this.broadcastService = broadcastService;
         }
 
         // GET: Students
@@ -60,6 +63,8 @@ namespace Team3Assig.Controllers
             {
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+
+                broadcastService.AddNewStudent(student.StudentId, student.Name, student.Birthdate, student.EmailAddress);
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
