@@ -19,5 +19,16 @@ namespace Team3Assig.Services
         {
             messageHub.Clients.All.SendAsync("AddNewStudent", id, name, birthday.ToString(), email);
         }
+
+        public void UpdateStudent(int id, string name, DateTime birthday, string email)
+        {
+            messageHub.Clients.All.SendAsync("UpdateStudent", id, name, birthday.ToString(), email);
+        }
+
+        public void RemoveStudent(int id)
+        {
+            messageHub.Clients.All.SendAsync("RemoveStudent", id);
+        }
+
     }
 }

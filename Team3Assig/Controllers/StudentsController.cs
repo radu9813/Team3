@@ -116,6 +116,7 @@ namespace Team3Assig.Controllers
                         throw;
                     }
                 }
+                broadcastService.UpdateStudent(student.StudentId, student.Name, student.Birthdate, student.EmailAddress);
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
@@ -147,6 +148,8 @@ namespace Team3Assig.Controllers
             var student = await _context.Student.FindAsync(id);
             _context.Student.Remove(student);
             await _context.SaveChangesAsync();
+
+            broadcastService.RemoveStudent(id);
             return RedirectToAction(nameof(Index));
         }
 
