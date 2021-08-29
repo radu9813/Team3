@@ -31,13 +31,13 @@ namespace Team3Assig
         {
             services.AddSignalR();
             services.AddSingleton<IBroadcastService, BroadcastService>();
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(
-                        Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
             services.AddSingleton<IDiplomataControllerSettings, DiplomataControllerSettings>();
+
+            string databaseURL = Environment.GetEnvironmentVariable("DATABASE_URL");
+            databaseURL = databaseURL != null ? ConvertHerokuStringToASPString(databaseURL) : Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(databaseURL));
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
@@ -127,6 +127,21 @@ namespace Team3Assig
             }
 
             return adminRole;
+        }
+
+        public static string ConvertHerokuStringToASPString(string herokuConnectionString)
+        {
+            var databaseUri = new Uri(herokuConnectionString);
+            string[] userInfo = databaseUri.UserInfo.Split(':');
+
+            int port = databaseUri.Port;
+            string host = databaseUri.Host;
+            string userId = userInfo[0];
+            string password = userInfo[1];
+            string database = databaseUri.AbsolutePath[1..];
+
+            string result = $"Host={host};Port={port};Database={database};User Id={userId};Password={password};Pooling=true;SSL Mode=Require;TrustServerCertificate=True;Include Error Detail=True";
+            return result;
         }
     }
 }
